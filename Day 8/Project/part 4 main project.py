@@ -43,7 +43,8 @@ shift = int(input("Type the shift number:\n"))
 # Hint: Think about how you can use the modulus (%).
 shift = shift % 26
 
-answer = input("Would you like to try the again?").lower()
+def answer():
+    input("Do you to start again?")
 
-for answer while == "yes":
+while answer != True:
     caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
