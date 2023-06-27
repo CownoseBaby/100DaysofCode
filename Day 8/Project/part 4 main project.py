@@ -8,13 +8,14 @@ def caesar(start_text, shift_amount, cipher_direction):
     if cipher_direction == "decode":
         shift_amount *= -1
     for char in start_text:
-        if char not in alphabet:
+        if char in alphabet:
             position = alphabet.index(char)
             new_position = position + shift_amount
             end_text += alphabet[new_position]
         else:
             end_text += char
     print(f"Here's the {cipher_direction}d result: {end_text}")
+
 
     # TODO-3: What happens if the user enters a number/symbol/space?
     # Can you fix the code to keep the number/symbol/space when the text is encoded/decoded?
@@ -32,19 +33,26 @@ print(logo)
 # If they type 'yes' then ask them for the direction/text/shift again and call the caesar() function again?
 # Hint: Try creating a while loop that continues to execute the program if the user types 'yes'.
 
+def run():
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+    shift = shift % 26
 
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+    caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
 
 # TODO-2: What if the user enters a shift that is greater than the number of letters in the alphabet?
 # Try running the program and entering a shift number of 45.
 # Add some code so that the program continues to work even if the user enters a shift number greater than 26.
 # Hint: Think about how you can use the modulus (%).
-shift = shift % 26
+#shift = shift % 26
+
+#caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
+
+run()
 
 def answer():
-    input("Do you to start again?")
+    return input("Do you to start again?").lower()
 
-while answer != True:
-    caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
+while answer()!= "no":
+    run()
